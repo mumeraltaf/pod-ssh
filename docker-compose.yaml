@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  db:
+    image: umer/ssh
+    build: .
+    volumes:
+      - ./data:/pod-ssh/data
+    ports:
+      - 2222:22
+    restart: on-failure
+    environment:
+      - GIT_REPO=https://github.com/geekcomputers/Python.git
+    healthcheck:
+      test: "exit 0"
