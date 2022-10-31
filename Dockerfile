@@ -3,6 +3,9 @@ MAINTAINER Umer Altaf <umeraltaf@gmail.com>
 
 ENV TERM xterm
 
+RUN apt-get update
+RUN apt-get install -y software-properties-common
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     openssh-server ca-certificates curl wget git \
   && apt-get clean \
