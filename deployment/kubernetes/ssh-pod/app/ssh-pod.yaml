@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssh-pod
+  labels:
+    app: ssh-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssh-pod
+  template:
+    metadata:
+      labels:
+        app: ssh-pod
+    spec:
+      containers:
+        - name: ssh-pod
+          image: umeraltaf/ssh-pod
+          env:
+            - name: GIT_REPO
+              value: https://github.com/geekcomputers/Python.git
+          ports:
+            - name: ssh
+              containerPort: 22
+          volumeMounts:
+            - mountPath: /pod-ssh/data/authorized_keys
+              name: auth-key
+              subPath: authorized_keys
+      volumes:
+        - name: auth-key
+          configMap:
+            name: auth-key
