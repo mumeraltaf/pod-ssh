@@ -12,9 +12,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /var/run/sshd \
-  && mkdir /root/.ssh \
-  && chmod 700 /root/.ssh \
-  && touch /root/.ssh/authorized_keys
+  && mkdir /ubuntu/.ssh \
+  && chmod 700 /ubuntu/.ssh \
+  && touch /ubuntu/.ssh/authorized_keys
 
 #RUN mkdir -p /pod-ssh/data
 
