@@ -3,6 +3,11 @@ MAINTAINER Umer Altaf <umeraltaf@gmail.com>
 
 ENV TERM xterm
 
+RUN mkdir /pod-ssh
+
+RUN chgrp -R 0 /pod-ssh && \
+    chmod -R g=u /pod-ssh
+
 RUN apt-get update
 RUN apt-get install -y software-properties-common
 
@@ -12,9 +17,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /var/run/sshd \
-  && mkdir /home/ubuntu/.ssh \
-  && chmod 700 /home/ubuntu/.ssh \
-  && touch /home/ubuntu/.ssh/authorized_keys
+  && mkdir /root/.ssh \
+  && chmod 700 /root/.ssh \
+  && touch /root/.ssh/authorized_keys
 
 #RUN mkdir -p /pod-ssh/data
 

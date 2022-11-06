@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-cp /pod-ssh/data/authorized_keys /home/ubuntu/.ssh/authorized_keys
+cp /pod-ssh/data/authorized_keys /root/.ssh/authorized_keys
 
 
 
@@ -10,7 +10,7 @@ if [[ -z "${GIT_REPO}" ]]; then
 else
   ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
   export GIT_SSL_NO_VERIFY=1
-  cd /home/ubuntu
+  cd /root
   git clone ${GIT_REPO}
 fi
 
