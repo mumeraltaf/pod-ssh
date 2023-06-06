@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM nestybox/ubuntu-bionic-systemd
 MAINTAINER Umer Altaf <umeraltaf@gmail.com>
 
 ENV TERM xterm
