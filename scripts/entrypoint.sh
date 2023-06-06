@@ -17,3 +17,5 @@ fi
 
 
 exec ssh-start ssh-server
+
+./sbin/init

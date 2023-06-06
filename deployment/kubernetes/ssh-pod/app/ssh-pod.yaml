@@ -20,7 +20,7 @@ spec:
       runtimeClassName: sysbox-runc
       containers:
         - name: ssh-pod
-          image: umeraltaf/ssh-pod
+          image: umeraltaf/ssh-pod:latest
           imagePullPolicy: Always
           env:
             - name: GIT_REPO
