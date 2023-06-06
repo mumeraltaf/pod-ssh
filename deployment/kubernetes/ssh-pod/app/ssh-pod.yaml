@@ -11,9 +11,13 @@ spec:
       app: ssh-pod
   template:
     metadata:
+      annotations:
+        io.kubernetes.cri-o.userns-mode: "auto:size=65536"
       labels:
         app: ssh-pod
     spec:
+      nodeName: staging-worker-001
+      runtimeClassName: sysbox-runc
       containers:
         - name: ssh-pod
           image: umeraltaf/ssh-pod

@@ -9,6 +9,7 @@ spec:
     - name: ssh
       port: 22
       targetPort: 22
+      nodePort: 30001
   selector:
     app: ssh-pod
   type: NodePort

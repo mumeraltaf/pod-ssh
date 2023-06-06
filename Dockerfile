@@ -1,4 +1,4 @@
-FROM nestybox/ubuntu-bionic-systemd
+FROM registry.nestybox.com/nestybox/ubuntu-bionic-systemd-docker:latest
 MAINTAINER Umer Altaf <umeraltaf@gmail.com>
 
 ENV TERM xterm
