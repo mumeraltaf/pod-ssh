@@ -1,0 +1,11 @@
+# Custom SSH Configuration
+Port 22
+PermitRootLogin yes
+PasswordAuthentication no
+AuthorizedKeysFile /root/.ssh/authorized_keys
+
+Match User umer
+  ForceCommand /usr/local/bin/forward_to_pod umer
+
+Match User userB
+  ForceCommand /usr/local/bin/forward_to_pod userB
