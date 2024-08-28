@@ -4,6 +4,8 @@ ClientAliveInterval 30
 PermitRootLogin yes
 PasswordAuthentication yes
 PermitEmptyPasswords yes
+AllowAgentForwarding yes
+
 AuthorizedKeysFile /root/.ssh/authorized_keys
 
 Match User umer
