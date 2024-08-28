@@ -1,4 +1,5 @@
 #!/bin/bash
+echo $(whoami) >> /proc/1/fd/1
 echo "forward_to_pod" >> /proc/1/fd/1
 echo $1 >> /proc/1/fd/1
 USER=$1
