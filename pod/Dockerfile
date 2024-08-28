@@ -28,8 +28,8 @@ COPY authorized_keys /home/umer/.ssh/authorized_keys
 RUN chown umer:umer /home/umer/.ssh/authorized_keys && chmod 600 /home/umer/.ssh/authorized_keys
 
 # Set SSH to allow the user to login
-RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
+RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN echo "AllowUsers umer" >> /etc/ssh/sshd_config
 
 # Expose the SSH port
