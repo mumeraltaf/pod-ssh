@@ -1,4 +1,4 @@
-name: Build and Push SSH Bastian
+name: Build and Push SSH User Pod
 
 on:
   workflow_dispatch:
