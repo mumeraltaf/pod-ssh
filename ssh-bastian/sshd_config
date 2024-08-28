@@ -1,12 +1,17 @@
-# Custom SSH Configuration
-Port 22
-ClientAliveInterval 30
-PermitRootLogin yes
-PasswordAuthentication yes
-PermitEmptyPasswords yes
+# SSH server configuration
+
+# Disable password authentication
+PasswordAuthentication no
+PermitRootLogin no
+
+# Enable public key authentication
+PubkeyAuthentication yes
+
+# Allow agent forwarding
 AllowAgentForwarding yes
 
-AuthorizedKeysFile /root/.ssh/authorized_keys
+# Use the custom script for connection forwarding
+ForceCommand /usr/local/bin/forward_to_pod
 
-Match User *
-  ForceCommand /usr/local/bin/forward_to_pod
+# Logging
+LogLevel INFO
