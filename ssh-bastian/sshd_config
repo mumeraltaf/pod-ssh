@@ -8,8 +8,5 @@ AllowAgentForwarding yes
 
 AuthorizedKeysFile /root/.ssh/authorized_keys
 
-Match User umer
-  ForceCommand /usr/local/bin/forward_to_pod umer
-
-Match User userB
-  ForceCommand /usr/local/bin/forward_to_pod userB
+Match User *
+  ForceCommand /usr/local/bin/forward_to_pod
