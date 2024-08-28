@@ -1,0 +1,9 @@
+# Custom SSH Configuration
+Port 22
+ClientAliveInterval 30
+PermitRootLogin yes
+PasswordAuthentication no
+PubkeyAuthentication yes
+PermitEmptyPasswords yes
+
+AuthorizedKeysFile /home/umer/.ssh/authorized_keys

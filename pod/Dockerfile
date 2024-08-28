@@ -27,10 +27,21 @@ RUN mkdir -p /home/umer/.ssh && chown umer:umer /home/umer/.ssh && chmod 700 /ho
 COPY authorized_keys /home/umer/.ssh/authorized_keys
 RUN chown umer:umer /home/umer/.ssh/authorized_keys && chmod 600 /home/umer/.ssh/authorized_keys
 
-# Set SSH to allow the user to login
-RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN echo "AllowUsers umer" >> /etc/ssh/sshd_config
+## Set SSH to allow the user to login
+#RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+#RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+#RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+#RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+#RUN echo "AllowUsers umer" >> /etc/ssh/sshd_config
+
+
+
+# Allow for key-based authentication
+RUN mkdir -p /umer/.ssh && chmod 700 /umer/.ssh
+COPY authorized_keys /root/.ssh/authorized_keys
+RUN chmod 600 /umer/.ssh/authorized_keys
+
+
 
 # Expose the SSH port
 EXPOSE 22
