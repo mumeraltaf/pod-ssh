@@ -1,5 +1,6 @@
 # Custom SSH Configuration
 Port 22
+ServerAliveInterval 15
 PermitRootLogin yes
 PasswordAuthentication yes
 PermitEmptyPasswords yes
