@@ -6,6 +6,8 @@ PasswordAuthentication yes
 PermitEmptyPasswords yes
 AllowAgentForwarding yes
 
+AllowUsers umer
+
 AuthorizedKeysFile /root/.ssh/authorized_keys
 
 ForceCommand /usr/local/bin/forward_to_pod umer
