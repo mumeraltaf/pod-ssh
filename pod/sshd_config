@@ -6,4 +6,6 @@ PasswordAuthentication no
 PubkeyAuthentication yes
 PermitEmptyPasswords yes
 
-AuthorizedKeysFile /home/umer/.ssh/authorized_keys
+AllowUsers umer
+
+AuthorizedKeysFile /etc/ssh/authorized_keys

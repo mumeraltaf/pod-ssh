@@ -34,13 +34,7 @@ RUN chown umer:umer /home/umer/.ssh/authorized_keys && chmod 600 /home/umer/.ssh
 #RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
 #RUN echo "AllowUsers umer" >> /etc/ssh/sshd_config
 
-
-
-# Allow for key-based authentication
-RUN mkdir -p /umer/.ssh && chmod 700 /umer/.ssh
-COPY authorized_keys /root/.ssh/authorized_keys
-RUN chmod 600 /umer/.ssh/authorized_keys
-
+COPY sshd_config /etc/ssh/sshd_config
 
 
 # Expose the SSH port
