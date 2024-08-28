@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ssh-bastion-service
+  namespace: ssh
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: ssh.test.aurin-prod.cloud.edu.au
+spec:
+  selector:
+    app: ssh-bastion
+  ports:
+    - protocol: TCP
+      port: 22
+      targetPort: 22
+  type: LoadBalancer

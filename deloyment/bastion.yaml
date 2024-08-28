@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssh-bastion
+  namespace: ssh
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssh-bastion
+  template:
+    metadata:
+      labels:
+        app: ssh-bastion
+    spec:
+      serviceAccountName: ssh-bastion-sa
+      containers:
+        - name: ssh-bastion
+          image: umeraltaf/ssh-bastian:2ee5bb6
+          ports:
+            - containerPort: 22
+---
