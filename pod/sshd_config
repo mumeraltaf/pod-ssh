@@ -5,6 +5,8 @@ PermitRootLogin yes
 PasswordAuthentication no
 PubkeyAuthentication yes
 PermitEmptyPasswords yes
+AllowAgentForwarding yes
+
 
 AllowUsers umer
 
