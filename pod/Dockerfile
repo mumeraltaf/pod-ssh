@@ -8,6 +8,11 @@ RUN apt-get update && apt-get install -y \
     bash \
     && rm -rf /var/lib/apt/lists/*
 
+
+
+# Create the SSH privilege separation directory
+RUN mkdir -p /run/sshd && chmod 0755 /run/sshd
+
 # Create a user with a home directory
 RUN useradd -m -s /bin/bash umer
 
