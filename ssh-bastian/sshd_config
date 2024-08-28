@@ -1,7 +1,7 @@
 # Custom SSH Configuration
 Port 22
 PermitRootLogin yes
-PasswordAuthentication no
+PasswordAuthentication yes
 AuthorizedKeysFile /root/.ssh/authorized_keys
 
 Match User umer
