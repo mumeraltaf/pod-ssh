@@ -8,4 +8,4 @@ PermitEmptyPasswords yes
 
 AllowUsers umer
 
-AuthorizedKeysFile /etc/ssh/authorized_keys
+AuthorizedKeysFile /home/umer/.ssh/authorized_keys
