@@ -1,8 +1,18 @@
 # SSH server configuration
 
+
+ClientAliveInterval 30
+
 # Disable password authentication
 PasswordAuthentication no
 PermitRootLogin no
+
+# Allow TCP forwarding (necessary for port forwarding)
+AllowTcpForwarding yes
+
+# PermitTunnel yes
+PermitTunnel yes
+
 
 # Enable public key authentication
 PubkeyAuthentication yes

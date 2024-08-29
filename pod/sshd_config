@@ -6,6 +6,8 @@ PasswordAuthentication no
 PubkeyAuthentication yes
 PermitEmptyPasswords yes
 AllowAgentForwarding yes
+AllowTcpForwarding yes
+PermitTunnel yes
 
 
 AllowUsers umer
