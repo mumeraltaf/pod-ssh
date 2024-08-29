@@ -8,6 +8,6 @@ metadata:
 spec:
   containers:
     - name: umer-container
-      image: umeraltaf/ssh-pod:fde25f7
+      image: umeraltaf/ssh-pod:549dac3
       ports:
         - containerPort: 22
