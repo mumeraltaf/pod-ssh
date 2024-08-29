@@ -23,12 +23,14 @@ fi
 
 # Parse the SSH command to check for port forwarding requests
 if [[ "$SSH_ORIGINAL_COMMAND" =~ ^-L|^-R ]]; then
+  echo "forward_to_pod" >> /proc/1/fd/1
   # Extract local or remote port forwarding options
   FORWARD_OPTIONS=$(echo $SSH_ORIGINAL_COMMAND | grep -o '\(-L \| -R \)[^ ]*' | sed "s/:localhost/:$POD_IP/g")
 
   # Replace localhost with the POD_IP in the forwarding command
   ssh -o "StrictHostKeyChecking no" $FORWARD_OPTIONS
 else
+  echo "forward_to_pod" >> /proc/1/fd/1
   # Default: Forward the SSH connection to the user's pod
   exec ssh -o "StrictHostKeyChecking no" $USER@$POD_IP
 fi
