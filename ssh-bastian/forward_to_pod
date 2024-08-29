@@ -20,6 +20,7 @@ if [ -z "$POD_IP" ]; then
   echo "Access denied: No pod found for user $USER"
   exit 1
 fi
+echo "SSH_ORIGINAL_COMMAND: '$SSH_ORIGINAL_COMMAND'" >> /var/log/forward_to_pod.log
 
 # Parse the SSH command to check for port forwarding requests
 if [[ "$SSH_ORIGINAL_COMMAND" =~ -L|-R ]]; then
