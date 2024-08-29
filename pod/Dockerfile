@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
 # Create the SSH privilege separation directory
 RUN mkdir -p /run/sshd && chmod 0755 /run/sshd
 
+#add umer user
 # Create a user with a home directory
 RUN useradd -m -s /bin/bash umer
 
@@ -23,12 +24,10 @@ RUN echo 'umer:userApassword' | chpasswd
 
 # Allow the user to use sudo (optional)
 RUN usermod -aG sudo umer
-
-COPY sshd_config /etc/ssh/sshd_config
-# Allow for key-based authentication
-#RUN mkdir -p /umer/.ssh && chmod 700 /umer/.ssh
+# Configure SSH for key-based authentication
+RUN mkdir -p /home/umer/.ssh && chown umer:umer /home/umer/.ssh && chmod 700 /home/umer/.ssh
 COPY authorized_keys /home/umer/.ssh/authorized_keys
-RUN chmod 600 /home/umer/.ssh/authorized_keys
+RUN chown umer:umer /home/umer/.ssh/authorized_keys && chmod 600 /home/umer/.ssh/authorized_keys
 
 # Expose the SSH port
 EXPOSE 22
