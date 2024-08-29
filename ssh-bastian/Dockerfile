@@ -20,12 +20,6 @@ RUN mkdir /var/run/sshd
 # Set the root password (optional, for debugging)
 RUN echo 'root:rootpassword' | chpasswd
 
-# Configure SSH
-RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
-RUN sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords no/' /etc/ssh/sshd_config
-
 # Allow for key-based authentication
 RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
 COPY authorized_keys /root/.ssh/authorized_keys
