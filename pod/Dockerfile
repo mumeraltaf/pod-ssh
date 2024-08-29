@@ -34,4 +34,11 @@ RUN chmod 600 /umer/.ssh/authorized_keys
 EXPOSE 22
 
 # Start SSH service
-CMD ["/usr/sbin/sshd", "-D"]
+#CMD ["/usr/sbin/sshd", "-D"]
+
+
+# Copy the entrypoint script into the container
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
+# Set the entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
