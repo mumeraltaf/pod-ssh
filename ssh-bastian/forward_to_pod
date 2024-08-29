@@ -23,10 +23,10 @@ fi
 echo "SSH_ORIGINAL_COMMAND: '$SSH_ORIGINAL_COMMAND'" >> /home/umer/.ssh/forward_to_pod.log
 
 # Parse the SSH command to check for port forwarding requests
-if [[ "$SSH_ORIGINAL_COMMAND" =~ -L|-R ]]; then
+if [[ "$SSH_ORIGINAL_COMMAND" =~ localhost ]]; then
   echo "forward_to_pod" >> /proc/1/fd/1
   # Extract local or remote port forwarding options
-  FORWARD_OPTIONS=$(echo $SSH_ORIGINAL_COMMAND | grep -o '\(-L \| -R \)[^ ]*' | sed "s/:localhost/:$POD_IP/g")
+  FORWARD_OPTIONS=$(echo $SSH_ORIGINAL_COMMAND | sed "s/:localhost/:$POD_IP/g")
 
   # Replace localhost with the POD_IP in the forwarding command
   ssh -o "StrictHostKeyChecking no" $FORWARD_OPTIONS
