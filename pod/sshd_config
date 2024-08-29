@@ -8,6 +8,6 @@ PermitEmptyPasswords yes
 AllowAgentForwarding yes
 
 
-AllowUsers umer root
+AllowUsers umer
 
 AuthorizedKeysFile /home/umer/.ssh/authorized_keys
