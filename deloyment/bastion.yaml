@@ -16,7 +16,7 @@ spec:
       serviceAccountName: ssh-bastion-sa
       containers:
         - name: ssh-bastion
-          image: umeraltaf/ssh-bastian:5a24625
+          image: umeraltaf/ssh-bastian:250045b
           ports:
             - containerPort: 22
 ---

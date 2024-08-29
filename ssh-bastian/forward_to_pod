@@ -29,7 +29,7 @@ if [[ "$SSH_ORIGINAL_COMMAND" =~ localhost ]]; then
   FORWARD_OPTIONS=$(echo $SSH_ORIGINAL_COMMAND | sed "s/:localhost/:$POD_IP/g")
 
   # Replace localhost with the POD_IP in the forwarding command
-  ssh -o "StrictHostKeyChecking no" $FORWARD_OPTIONS
+  ssh -o "StrictHostKeyChecking no" -L $FORWARD_OPTIONS $USER@$POD_IP
 else
   echo "forward_to_pod" >> /proc/1/fd/1
   # Default: Forward the SSH connection to the user's pod
