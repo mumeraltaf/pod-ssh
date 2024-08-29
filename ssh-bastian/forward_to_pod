@@ -1,6 +1,6 @@
 #!/bin/bash
-echo $(whoami) >> /proc/1/fd/1
-echo "forward_to_pod" >> /proc/1/fd/1
+sudo echo $(whoami) >> /proc/1/fd/1
+sudo echo "forward_to_pod" >> /proc/1/fd/1
 USER=$(whoami)
 
 kubectl config set-cluster default --server=https://kubernetes.default.svc --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
@@ -11,27 +11,27 @@ kubectl config use-context default
 
 POD_NAME=$(kubectl get pod -l app=$USER -o jsonpath='{.items[0].metadata.name}')
 POD_IP=$(kubectl get pod $POD_NAME -o jsonpath='{.status.podIP}')
-echo $USER >> /proc/1/fd/1
-echo $POD_IP >> /proc/1/fd/1
+sudo echo $USER >> /proc/1/fd/1
+sudo echo $POD_IP >> /proc/1/fd/1
 
 
 # If no pod was found, deny access
 if [ -z "$POD_IP" ]; then
-  echo "Access denied: No pod found for user $USER"
+  sudo echo "Access denied: No pod found for user $USER"
   exit 1
 fi
 echo "SSH_ORIGINAL_COMMAND: '$SSH_ORIGINAL_COMMAND'" >> /home/umer/.ssh/forward_to_pod.log
 
 # Parse the SSH command to check for port forwarding requests
 if [[ "$SSH_ORIGINAL_COMMAND" =~ localhost ]]; then
-  echo "forward_to_pod" >> /proc/1/fd/1
+  sudo echo "forward_to_pod" >> /proc/1/fd/1
   # Extract local or remote port forwarding options
-  FORWARD_OPTIONS=$(echo $SSH_ORIGINAL_COMMAND | sed "s/:localhost/:$POD_IP/g")
+  FORWARD_OPTIONS=$(sudo echo $SSH_ORIGINAL_COMMAND | sed "s/:localhost/:$POD_IP/g")
 
   # Replace localhost with the POD_IP in the forwarding command
   ssh -o "StrictHostKeyChecking no" -L $FORWARD_OPTIONS $USER@$POD_IP
 else
-  echo "forward_to_pod" >> /proc/1/fd/1
+  sudo echo "forward_to_pod" >> /proc/1/fd/1
   # Default: Forward the SSH connection to the user's pod
   exec ssh -o "StrictHostKeyChecking no" $USER@$POD_IP
 fi
