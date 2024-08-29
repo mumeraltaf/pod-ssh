@@ -2,7 +2,7 @@
 
 # Disable password authentication
 PasswordAuthentication no
-PermitRootLogin yes
+PermitRootLogin no
 
 # Enable public key authentication
 PubkeyAuthentication yes
