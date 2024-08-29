@@ -17,7 +17,7 @@ echo $POD_IP >> /proc/1/fd/1
 
 # If no pod was found, deny access
 if [ -z "$POD_IP" ]; then
-  echo "Access denied: No pod found for user $USERNAME"
+  echo "Access denied: No pod found for user $USER"
   exit 1
 fi
 
@@ -27,8 +27,8 @@ if [[ "$SSH_ORIGINAL_COMMAND" =~ ^-L|^-R ]]; then
   FORWARD_OPTIONS=$(echo $SSH_ORIGINAL_COMMAND | grep -o '\(-L \| -R \)[^ ]*' | sed "s/:localhost/:$POD_IP/g")
 
   # Replace localhost with the POD_IP in the forwarding command
-  ssh -o "StrictHostKeyChecking no" -i /root/.ssh/id_rsa $FORWARD_OPTIONS
+  ssh -o "StrictHostKeyChecking no" $FORWARD_OPTIONS
 else
   # Default: Forward the SSH connection to the user's pod
-  exec ssh -o "StrictHostKeyChecking no" -i /root/.ssh/id_rsa $USERNAME@$POD_IP
+  exec ssh -o "StrictHostKeyChecking no" $USER@$POD_IP
 fi
