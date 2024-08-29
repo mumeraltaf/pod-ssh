@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     openssh-client \
     curl \
     bash \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Install kubectl
