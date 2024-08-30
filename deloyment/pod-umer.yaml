@@ -5,9 +5,14 @@ metadata:
   namespace: ssh
   labels:
     app: umer
+  annotations:
+    io.kubernetes.cri-o.userns-mode: "auto:size=65536"
 spec:
+  runtimeClassName: sysbox-runc
   containers:
     - name: umer-container
-      image: umeraltaf/ssh-pod:eded1ad
+      image: umeraltaf/ssh-pod:63bf436
       ports:
         - containerPort: 22
+      securityContext:
+        allowPrivilegeEscalation: true
